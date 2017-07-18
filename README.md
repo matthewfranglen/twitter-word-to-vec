@@ -10,7 +10,7 @@ Set Up
 
 The [data set](https://drive.google.com/uc?id=0B04GJPshIjmPRnZManQwWEdTZjg&export=download) should be placed in data/
 
-I had to add `"Sentiment","ItemID","Date","SentimentSource","SentimentText"` as the first row.
+I had to add `"Sentiment","ItemID","Date","SentimentSource","SentimentAuthor","SentimentText"` as the first row.
 
 Then you need a python virtual environment:
 
