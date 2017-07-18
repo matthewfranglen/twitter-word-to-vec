@@ -29,8 +29,30 @@ def ingest():
     print('dataset loaded with shape', data.shape)
     return data
 
+def tokenize(tweet):
+    try:
+        tweet = unicode(tweet.decode('utf-8').lower())
+        tokens = tokenizer.tokenize(tweet)
+        tokens = filter(lambda t: not t.startswith('@'), tokens)
+        tokens = filter(lambda t: not t.startswith('#'), tokens)
+        tokens = filter(lambda t: not t.startswith('http'), tokens)
+        return tokens
+    except:
+        return 'NC'
+
+def postprocess(data, n=1000000):
+    data = data.head(n)
+    data['tokens'] = data['SentimentText'].progress_map(tokenize)  ## progress_map is a variant of the map function plus a progress bar. Handy to monitor DataFrame creations.
+    data = data[data.tokens != 'NC']
+    data.reset_index(inplace=True)
+    data.drop('index', inplace=True, axis=1)
+    return data
+
+n = 250
+n_dim = 200
+
 data = ingest()
-print(data.head(5))
+data = postprocess(data, n)
 
 x_train, x_test, y_train, y_test = train_test_split(np.array(data.head(n).tokens),
                                                     np.array(data.head(n).Sentiment), test_size=0.2)
