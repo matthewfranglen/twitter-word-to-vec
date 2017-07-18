@@ -17,3 +17,17 @@ tokenizer = TweetTokenizer()
 
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+def ingest():
+    data = pd.read_csv('./tweets.csv')
+    data.drop(['ItemID', 'SentimentSource'], axis=1, inplace=True)
+    data = data[data.Sentiment.isnull() == False]
+    data['Sentiment'] = data['Sentiment'].map(int)
+    data = data[data['SentimentText'].isnull() == False]
+    data.reset_index(inplace=True)
+    data.drop('index', axis=1, inplace=True)
+    print('dataset loaded with shape', data.shape)
+    return data
+
+data = ingest()
+data.head(5)
