@@ -30,4 +30,4 @@ def ingest():
     return data
 
 data = ingest()
-data.head(5)
+print(data.head(5))
