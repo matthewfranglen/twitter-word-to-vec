@@ -10,8 +10,10 @@ def load(filename, count):
     return postprocess(raw_data)
 
 def ingest(filename, count):
-    data = pandas.read_csv(filename)
-    data = data.head(count)
+    data = pandas.read_csv(filename, encoding='latin1')
+
+    if count:
+        data = data.head(count)
 
     data.drop(['ItemID', 'SentimentSource'], axis=1, inplace=True)
     data = data[data.Sentiment.isnull() == False]
