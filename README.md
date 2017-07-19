@@ -64,3 +64,8 @@ Epoch 9/9
 27s - loss: -1.8164e+01 - acc: 0.1325
 Classification completed with score of 0.143940625
 ```
+
+Output
+------
+
+You can see the plot [here](https://matthewfranglen.github.io/twitter-word-to-vec/).
