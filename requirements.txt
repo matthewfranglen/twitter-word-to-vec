@@ -10,7 +10,7 @@ Keras-Preprocessing==1.1.0
 Keras==2.3.1
 Markdown==3.1.1
 MarkupSafe==1.1.1
-Pillow==6.2.0
+Pillow==6.2.1
 PySocks==1.7.1
 PyWavelets==1.0.3
 PyYAML==5.1.2
